@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Unidade {
+  id        String      @id @default(uuid())
+  nome      String
+  tipo      TipoUnidade
+  createdAt DateTime    @default(now())
+}
+
+enum TipoUnidade {
+  HOSPITAL
+  UPA
+  UBS
+}
