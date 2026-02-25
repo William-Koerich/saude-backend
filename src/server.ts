@@ -1,7 +1,11 @@
 import { app } from "./app";
+import { createServer } from "http";
+import { initSocket } from "./socket";
 
-const PORT = 3000;
+const httpServer = createServer(app);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server rodando na porta ${PORT}`);
+initSocket(httpServer);
+
+httpServer.listen(3010, () => {
+  console.log("🚀 Server rodando na porta 3010");
 });

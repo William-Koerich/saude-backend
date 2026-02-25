@@ -5,7 +5,7 @@ export function tenantMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  const tenantId = req.headers["x-tenant-id"] as string;
+  const tenantId = req.headers["x-unidade-id"] as string;
 
   if (!tenantId) {
     return res.status(400).json({
@@ -13,7 +13,7 @@ export function tenantMiddleware(
     });
   }
 
-  (req as any).tenantId = tenantId;
+  (req as any).unidadeId = tenantId;
 
   next();
 }

@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Unidade {
@@ -11,10 +12,28 @@ model Unidade {
   nome      String
   tipo      TipoUnidade
   createdAt DateTime    @default(now())
+
+  filas Fila[]
 }
 
 enum TipoUnidade {
   HOSPITAL
   UPA
   UBS
+}
+
+model Fila {
+  id        String          @id @default(uuid())
+  nome      String
+  tipo      TipoAtendimento
+  chamada   Boolean         @default(false)
+  unidadeId String
+  createdAt DateTime        @default(now())
+
+  unidade Unidade @relation(fields: [unidadeId], references: [id])
+}
+
+enum TipoAtendimento {
+  PREFERENCIAL
+  NORMAL
 }
