@@ -1,5 +1,14 @@
-declare namespace Express {
-  export interface Request {
-    unidadeId?: string;
+import "express"
+
+declare global {
+  namespace Express {
+    interface Request {
+      unidadeId?: string
+      user?: {
+        id: string
+        funcao: string
+        unidadeId: string
+      }
+    }
   }
 }
