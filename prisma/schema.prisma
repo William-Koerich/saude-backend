@@ -14,6 +14,7 @@ model Unidade {
   createdAt DateTime    @default(now())
 
   filas Fila[]
+  funcionarios Funcionario[]
 }
 
 enum TipoUnidade {
@@ -36,4 +37,21 @@ model Fila {
 enum TipoAtendimento {
   PREFERENCIAL
   NORMAL
+}
+
+model Funcionario {
+  id           String   @id @default(uuid())
+  nome         String
+  cpf          String   @unique
+  email        String   @unique
+  celular      String
+  tipoDocumento String
+  documento    String
+  funcao       String
+
+  unidadeId    String
+  unidade      Unidade  @relation(fields: [unidadeId], references: [id])
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
