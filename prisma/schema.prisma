@@ -13,7 +13,7 @@ model Unidade {
   tipo      TipoUnidade
   createdAt DateTime    @default(now())
 
-  filas Fila[]
+  filas        Fila[]
   funcionarios Funcionario[]
 }
 
@@ -40,18 +40,27 @@ enum TipoAtendimento {
 }
 
 model Funcionario {
-  id           String   @id @default(uuid())
-  nome         String
-  cpf          String   @unique
-  email        String   @unique
-  celular      String
-  tipoDocumento String
-  documento    String
-  funcao       String
+  id            String  @id @default(uuid())
+  nome          String
+  cpf           String  @unique
+  email         String  @unique
+  celular       String
+  tipoDocumento String? // ✅ agora pode ser null
+  documento     String? // ✅ agora pode ser null
+  funcao        String
+  senha         String
 
-  unidadeId    String
-  unidade      Unidade  @relation(fields: [unidadeId], references: [id])
+  unidadeId String
+  unidade   Unidade @relation(fields: [unidadeId], references: [id])
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Fucao {
+  MEDICO
+  ENFERMEIRO
+  ADMINISTRATIVO
+  RECEPCIONISTA
+  TECNICO
 }
