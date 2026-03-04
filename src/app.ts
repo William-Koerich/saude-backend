@@ -7,13 +7,7 @@ import funcionarioRoutes from "./modules/funcionario/routes/funcionario"
 export const app = express()
 
 app.use(cors({
-  origin: "http://localhost:3000",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "x-tenant-id"
-  ],
+  origin: true, // aceita qualquer origem em dev
   credentials: true,
 }))
 
