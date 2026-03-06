@@ -13,8 +13,9 @@ model Unidade {
   tipo      TipoUnidade
   createdAt DateTime    @default(now())
 
-  filas        Fila[]
-  funcionarios Funcionario[]
+  filas             Fila[]
+  funcionarios      Funcionario[]
+  fichasAtendimento FichaAtendimento[]
 }
 
 enum TipoUnidade {
@@ -25,7 +26,7 @@ enum TipoUnidade {
 
 model Fila {
   id        String          @id @default(uuid())
-  senha     String
+  nome      String
   tipo      TipoAtendimento
   chamada   Boolean         @default(false)
   unidadeId String
@@ -63,4 +64,39 @@ enum Fucao {
   ADMINISTRATIVO
   RECEPCIONISTA
   TECNICO
+}
+
+model FichaAtendimento {
+  id                 String   @id @default(uuid())
+  nome               String
+  dataNascimento     DateTime
+  genero             Genero
+  endereco           String
+  whatsapp           String
+  nomeMae            String
+  raca               Raca
+  nacionalidade      String
+  telefoneEmergencia String
+  email              String?
+
+  unidadeId String
+  unidade   Unidade @relation(fields: [unidadeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Genero {
+  MASCULINO
+  FEMININO
+  OUTRO
+}
+
+enum Raca {
+  BRANCA
+  PRETA
+  PARDA
+  AMARELA
+  INDIGENA
+  NAO_DECLARADO
 }
