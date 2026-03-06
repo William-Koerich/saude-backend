@@ -25,7 +25,7 @@ enum TipoUnidade {
 
 model Fila {
   id        String          @id @default(uuid())
-  nome      String
+  senha     String
   tipo      TipoAtendimento
   chamada   Boolean         @default(false)
   unidadeId String

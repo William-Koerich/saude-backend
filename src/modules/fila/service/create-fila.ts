@@ -5,8 +5,8 @@ export class CreateFilaService {
   private repository = new FilaRepository();
 
   async execute({ nome, tipo, unidadeId }: CreateFilaDTO) {
-    if (!nome || nome.length < 3) {
-      throw new Error("Nome inválido");
+    if (!nome) {
+      throw new Error("Senha inválida");
     }
 
     return this.repository.create({

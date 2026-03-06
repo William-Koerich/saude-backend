@@ -16,7 +16,7 @@ export class ChamarPacienteService {
 
     // 🔥 Emite para a TV da unidade correta
     io.to(unidadeId).emit("chamarPaciente", {
-      nome: proximo.nome,
+      senha: proximo.nome,
     });
 
     return proximo;
