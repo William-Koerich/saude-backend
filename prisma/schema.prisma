@@ -25,12 +25,13 @@ enum TipoUnidade {
 }
 
 model Fila {
-  id        String          @id @default(uuid())
-  nome      String
-  tipo      TipoAtendimento
-  chamada   Boolean         @default(false)
-  unidadeId String
-  createdAt DateTime        @default(now())
+  id               String          @id @default(uuid())
+  nome             String
+  tipo             TipoAtendimento
+  chamada          Boolean         @default(false)
+  localAtendimento String?
+  unidadeId        String
+  createdAt        DateTime        @default(now())
 
   unidade Unidade @relation(fields: [unidadeId], references: [id])
 }

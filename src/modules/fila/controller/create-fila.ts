@@ -4,7 +4,7 @@ import { CreateFilaService } from "../service/create-fila";
 export class CreateFilaController {
   async handle(req: Request, res: Response) {
     try {
-      const { nome, tipo } = req.body;
+      const { nome, tipo, local } = req.body;
       const unidadeId = req.unidadeId!;
 
       const service = new CreateFilaService();

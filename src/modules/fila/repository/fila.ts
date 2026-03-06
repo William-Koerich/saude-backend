@@ -20,10 +20,10 @@ export class FilaRepository {
     });
   }
 
-  async marcarComoChamado(id: string) {
+  async marcarComoChamado(id: string, localAtendimento: string) {
     return prisma.fila.update({
       where: { id },
-      data: { chamada: true },
+      data: { chamada: true, localAtendimento },
     });
   }
 }
