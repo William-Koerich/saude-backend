@@ -1,8 +1,11 @@
 import { FichaAtendimentoRepository } from "../repository/ficha-atendimento";
 import { CreateFichaAtendimentoDTO } from "../dto/CreateFichaAtendimentoDTO";
+import { FilaRepository } from "../../fila/repository/fila";
+import { TipoAtendimento } from "@prisma/client";
 
 export class CreateFichaAtendimentoService {
   private repository = new FichaAtendimentoRepository();
+  private filaRepository = new FilaRepository();
 
   async execute(data: CreateFichaAtendimentoDTO) {
     // validações simples
@@ -19,6 +22,16 @@ export class CreateFichaAtendimentoService {
       data.dataNascimento = new Date(data.dataNascimento);
     }
 
-    return this.repository.create(data);
+    // cria ficha de atendimento
+    const ficha = await this.repository.create(data);
+
+    // adiciona paciente à fila automaticamente usando o nome como senha
+    await this.filaRepository.create({
+      nome: data.nome,
+      tipo: TipoAtendimento.NORMAL,
+      unidadeId: data.unidadeId,
+    });
+
+    return ficha;
   }
 }
