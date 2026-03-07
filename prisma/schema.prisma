@@ -30,6 +30,7 @@ model Fila {
   tipo             TipoAtendimento
   chamada          Boolean         @default(false)
   localAtendimento String?
+  chamadoAt        DateTime? // data/hora em que a senha foi chamada
   unidadeId        String
   createdAt        DateTime        @default(now())
 

@@ -23,7 +23,7 @@ export class FilaRepository {
   async marcarComoChamado(id: string, localAtendimento: string) {
     return prisma.fila.update({
       where: { id },
-      data: { chamada: true, localAtendimento },
+      data: { chamada: true, localAtendimento, chamadoAt: new Date() },
     });
   }
 }
