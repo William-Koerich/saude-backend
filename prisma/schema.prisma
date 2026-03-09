@@ -31,6 +31,7 @@ model Fila {
   chamada          Boolean         @default(false)
   localAtendimento String?
   chamadoAt        DateTime? // data/hora em que a senha foi chamada
+  setor            Setor           @default(TRIAGEM)
   unidadeId        String
   createdAt        DateTime        @default(now())
 
@@ -40,6 +41,12 @@ model Fila {
 enum TipoAtendimento {
   PREFERENCIAL
   NORMAL
+}
+
+enum Setor {
+  RECEPCAO
+  TRIAGEM
+  CONSULTA
 }
 
 model Funcionario {
@@ -80,6 +87,7 @@ model FichaAtendimento {
   nacionalidade      String
   telefoneEmergencia String
   email              String?
+  setor              Setor    @default(TRIAGEM)
 
   unidadeId String
   unidade   Unidade @relation(fields: [unidadeId], references: [id])
