@@ -1,4 +1,4 @@
-import { Genero, Raca } from "@prisma/client";
+import { Genero, Raca, Setor } from "@prisma/client";
 
 export interface CreateFichaAtendimentoDTO {
   nome: string;
@@ -11,5 +11,6 @@ export interface CreateFichaAtendimentoDTO {
   nacionalidade: string;
   telefoneEmergencia: string;
   email?: string;
+  setor?: Setor;
   unidadeId: string;
 }

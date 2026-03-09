@@ -1,5 +1,6 @@
 import { prisma } from "../../../config/prisma";
 import { CreateFilaDTO } from "../dto/create-fila";
+import { Setor } from "@prisma/client";
 
 export class FilaRepository {
   async create(data: CreateFilaDTO) {
@@ -8,10 +9,11 @@ export class FilaRepository {
     });
   }
 
-  async findProximo(unidadeId: string) {
+  async findProximo(unidadeId: string, setor: Setor) {
     return prisma.fila.findFirst({
       where: {
         unidadeId,
+        setor,
         chamada: false,
       },
       orderBy: {

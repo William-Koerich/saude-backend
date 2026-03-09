@@ -4,7 +4,7 @@ import { CreateFilaDTO } from "../dto/create-fila";
 export class CreateFilaService {
   private repository = new FilaRepository();
 
-  async execute({ nome, tipo, unidadeId }: CreateFilaDTO) {
+  async execute({ nome, tipo, unidadeId, setor }: CreateFilaDTO) {
     if (!nome) {
       throw new Error("Senha inválida");
     }
@@ -13,6 +13,7 @@ export class CreateFilaService {
       nome,
       tipo,
       unidadeId,
+      setor,
     });
   }
 }

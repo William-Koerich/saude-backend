@@ -1,11 +1,12 @@
 import { FilaRepository } from "../repository/fila";
 import { getIO } from "../../../socket";
+import { Setor } from "@prisma/client";
 
 export class ChamarPacienteService {
   private repository = new FilaRepository();
 
-  async execute(unidadeId: string, localAtendimento: string) {
-    const proximo = await this.repository.findProximo(unidadeId);
+  async execute(unidadeId: string, localAtendimento: string, setor: Setor) {
+    const proximo = await this.repository.findProximo(unidadeId, setor);
 
     if (!proximo) {
       throw new Error("Nenhum paciente na fila");
